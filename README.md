@@ -8,10 +8,10 @@ Proteus 8 Professional
 
 
 
-AT89c51 used(Popularly known as 8051).
-Water level sensor used - Provided by www.theengineeringprojects.com
-LCD monitor
-DC buzzor
-LED - RED
+AT89c51 used(Popularly known as 8051),
+Water level sensor used - Provided by www.theengineeringprojects.com,
+LCD monitor,
+DC buzzor, and
+LED - RED.
 
 Coded in C
