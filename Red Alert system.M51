@@ -1,0 +1,192 @@
+BL51 BANKED LINKER/LOCATER V6.02                                                        11/18/2021  20:03:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.02, INVOKED BY:
+A:\KEIL\C51\BIN\BL51.EXE emb_code.obj TO Red Alert system CODE (0X0000-0X0FFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  emb_code.obj (EMB_CODE)
+  A:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  A:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  Red Alert system (EMB_CODE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     003BH     UNIT         ?PR?MAIN?EMB_CODE
+            CODE    083BH     002DH     UNIT         ?C?LIB_CODE
+            CODE    0868H     0023H     UNIT         ?PR?_LCDDISP?EMB_CODE
+            CODE    088BH     001CH     UNIT         ?CO?EMB_CODE
+            CODE    08A7H     001AH     UNIT         ?PR?_DELAY?EMB_CODE
+            CODE    08C1H     0019H     UNIT         ?PR?LCDINIT?EMB_CODE
+            CODE    08DAH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08E6H     000AH     UNIT         ?PR?_LCDCOMMAND?EMB_CODE
+            CODE    08F0H     000AH     UNIT         ?PR?_LCDDAT?EMB_CODE
+
+
+
+OVERLAY MAP OF MODULE:   Red Alert system (EMB_CODE)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?EMB_CODE
+
+?PR?MAIN?EMB_CODE                -----    -----
+  +--> ?PR?LCDINIT?EMB_CODE
+  +--> ?CO?EMB_CODE
+  +--> ?PR?_LCDDISP?EMB_CODE
+  +--> ?PR?_LCDCOMMAND?EMB_CODE
+  +--> ?PR?_DELAY?EMB_CODE
+
+?PR?LCDINIT?EMB_CODE             -----    -----
+  +--> ?PR?_LCDCOMMAND?EMB_CODE
+
+BL51 BANKED LINKER/LOCATER V6.02                                                      11/18/2021  20:03:00  PAGE 2
+
+
+?PR?_LCDCOMMAND?EMB_CODE         -----    -----
+  +--> ?PR?_DELAY?EMB_CODE
+
+?PR?_LCDDISP?EMB_CODE            0008H    0004H
+  +--> ?PR?_LCDDAT?EMB_CODE
+
+?PR?_LCDDAT?EMB_CODE             -----    -----
+  +--> ?PR?_DELAY?EMB_CODE
+
+
+
+SYMBOL TABLE OF MODULE:  Red Alert system (EMB_CODE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        EMB_CODE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:08AFH         PUBLIC        _delay
+  C:08E6H         PUBLIC        _lcdcommand
+  B:0090H.0       PUBLIC        s1
+  C:0800H         PUBLIC        main
+  B:0090H.4       PUBLIC        led
+  B:00B0H.0       PUBLIC        buz
+  B:0090H.3       PUBLIC        en
+  B:0090H.1       PUBLIC        rs
+  C:0868H         PUBLIC        _lcddisp
+  B:0090H.2       PUBLIC        rw
+  C:08C1H         PUBLIC        lcdinit
+  C:08F0H         PUBLIC        _lcddat
+  -------         PROC          MAIN
+  -------         DO            
+  C:0806H         SYMBOL        back
+  -------         ENDDO         
+  C:0800H         LINE#         19
+  C:0800H         LINE#         20
+  C:0800H         LINE#         21
+  C:0802H         LINE#         22
+  C:0804H         LINE#         23
+  C:0806H         LINE#         24
+  C:0809H         LINE#         25
+  C:0812H         LINE#         26
+  C:0814H         LINE#         27
+  C:0816H         LINE#         28
+  C:0816H         LINE#         29
+  C:0816H         LINE#         30
+  C:0819H         LINE#         31
+  C:081EH         LINE#         32
+  C:0825H         LINE#         33
+  C:082EH         LINE#         34
+  C:0830H         LINE#         35
+  C:0832H         LINE#         36
+  C:0839H         LINE#         37
+  C:0839H         LINE#         38
+BL51 BANKED LINKER/LOCATER V6.02                                                      11/18/2021  20:03:00  PAGE 3
+
+
+  -------         ENDPROC       MAIN
+  -------         PROC          LCDINIT
+  C:08C1H         LINE#         44
+  C:08C1H         LINE#         45
+  C:08C6H         LINE#         46
+  C:08CBH         LINE#         47
+  C:08D0H         LINE#         48
+  C:08D5H         LINE#         49
+  -------         ENDPROC       LCDINIT
+  -------         PROC          _LCDCOMMAND
+  D:0007H         SYMBOL        val
+  C:08E6H         LINE#         54
+  C:08E6H         LINE#         55
+  C:08E8H         LINE#         56
+  C:08EAH         LINE#         57
+  C:08EAH         LINE#         58
+  C:08EAH         LINE#         59
+  C:08EDH         LINE#         60
+  C:08EFH         LINE#         61
+  -------         ENDPROC       _LCDCOMMAND
+  -------         PROC          _LCDDAT
+  D:0007H         SYMBOL        dat
+  C:08F0H         LINE#         65
+  C:08F0H         LINE#         66
+  C:08F2H         LINE#         67
+  C:08F4H         LINE#         68
+  C:08F4H         LINE#         69
+  C:08F4H         LINE#         70
+  C:08F7H         LINE#         71
+  C:08F9H         LINE#         72
+  -------         ENDPROC       _LCDDAT
+  -------         PROC          _LCDDISP
+  D:0008H         SYMBOL        s
+  -------         DO            
+  D:000BH         SYMBOL        j
+  -------         ENDDO         
+  C:0868H         LINE#         76
+  C:086EH         LINE#         78
+  C:0883H         LINE#         79
+  C:0886H         LINE#         80
+  C:088AH         LINE#         81
+  -------         ENDPROC       _LCDDISP
+  -------         PROC          L?0018
+  -------         ENDPROC       L?0018
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:08AFH         LINE#         85
+  C:08AFH         LINE#         87
+  C:08C0H         LINE#         88
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        EMB_CODE
+
+  -------         MODULE        ?C?CLDOPTR
+  C:083BH         PUBLIC        ?C?CLDOPTR
+BL51 BANKED LINKER/LOCATER V6.02                                                      11/18/2021  20:03:00  PAGE 4
+
+
+  -------         ENDMOD        ?C?CLDOPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C1H BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=13.0 xdata=0 code=253
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

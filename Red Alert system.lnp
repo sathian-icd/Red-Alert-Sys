@@ -1,0 +1,3 @@
+"emb_code.obj" 
+TO "Red Alert system" 
+CODE( 0X0000-0X0FFF )

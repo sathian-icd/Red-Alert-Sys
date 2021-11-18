@@ -1,0 +1,113 @@
+C51 COMPILER V8.05a   EMB_CODE                                                             11/18/2021 20:02:59 PAGE 1   
+
+
+C51 COMPILER V8.05a, COMPILATION OF MODULE EMB_CODE
+OBJECT MODULE PLACED IN emb_code.OBJ
+COMPILER INVOKED BY: A:\keil\C51\BIN\C51.EXE emb_code.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit s1=P1^0;
+   3          sbit rs=P1^1; 
+   4          sbit rw=P1^2; 
+   5          sbit en=P1^3;
+   6          sbit buz=P3^0;
+   7          sbit led=P1^4;
+   8          
+   9          
+  10          
+  11          void delay(unsigned int);
+  12          void lcdinit();
+  13          void lcddat(unsigned char);
+  14          void lcdcommand(unsigned char);
+  15          void lcddisp(unsigned char *);
+  16          
+  17          
+  18          
+  19          void main()
+  20          {
+  21   1      buz=0;
+  22   1      led=0;
+  23   1      s1=0;
+  24   1      back:lcdinit();
+  25   1      lcddisp("Alert System");
+  26   1      buz=0;
+  27   1      led=0;
+  28   1      while(1)
+  29   1      {
+  30   2      if(s1==1){
+  31   3      lcdcommand(0x01);
+  32   3      delay(10000);
+  33   3      lcddisp("Red Alert Zone");
+  34   3      buz=1;
+  35   3      led=1;
+  36   3      delay(10000);
+  37   3      }
+  38   2      goto back;
+  39   2      }
+  40   1      }
+  41          
+  42          
+  43          
+  44          void lcdinit(){
+  45   1      lcdcommand(0x38); 
+  46   1      lcdcommand(0x10);
+  47   1      lcdcommand(0x10);
+  48   1      lcdcommand(0x0c);
+  49   1      lcdcommand(0x80);
+  50   1      }
+  51          
+  52          
+  53          
+  54          void lcdcommand(unsigned char val){
+  55   1      P2=val;
+C51 COMPILER V8.05a   EMB_CODE                                                             11/18/2021 20:02:59 PAGE 2   
+
+  56   1      rs=0;
+  57   1      rw=0;
+  58   1      en=1;
+  59   1      delay(100);
+  60   1      en=0;
+  61   1      }
+  62          
+  63          
+  64          
+  65          void lcddat(unsigned char dat){ 
+  66   1      P2=dat;
+  67   1      rs=1;
+  68   1      rw=0;
+  69   1      en=1;
+  70   1      delay(100);
+  71   1      en=0;
+  72   1      }
+  73          
+  74          
+  75          
+  76          void lcddisp(unsigned char *s){
+  77   1      unsigned char j;
+  78   1      for(j=0;s[j]!='\0';j++){
+  79   2      lcddat(s[j]);
+  80   2      }
+  81   1      }
+  82          
+  83          
+  84          
+  85          void delay(unsigned int n){
+  86   1      unsigned int i;
+  87   1      for(i=0;i<n;i++);
+  88   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    165    ----
+   CONSTANT SIZE    =     28    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
